@@ -14,9 +14,10 @@ public class Driversetup
 
 
     protected   WebDriver driver;
-    protected Map<String, String> testData;
     public static String browser;
     public SoftAssert softassert;
+    protected Map<String, String> testData = ReadFromData.readCSV("C:\\Users\\nadaf\\IdeaProjects\\vodafone_task\\src\\main\\resources\\data.csv");;
+
 
     @BeforeClass(alwaysRun = true)
     @Parameters("browser")
@@ -26,7 +27,6 @@ public class Driversetup
         this.browser=browser;
         System.out.println("Browser = "+browser);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        testData= ReadFromData.readCSV("C:\\Users\\nadaf\\IdeaProjects\\vodafone_task\\src\\main\\resources\\data.csv");
         softassert=new SoftAssert();
     }
 
@@ -52,12 +52,6 @@ public class Driversetup
             driver = new EdgeDriver();
         }
     }
-
-    public String getBrowser() {
-        System.out.println("getbrowser "+browser);
-        return browser;
-    }
-
 
 }
 
