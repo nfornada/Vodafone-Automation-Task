@@ -1,3 +1,4 @@
+import Data.ReadFromData;
 import Data.TestDataProvider;
 import Pages.LandingPage;
 import Pages.Page1;
@@ -55,7 +56,6 @@ public class Testclass extends Driversetup {
     @Test(priority = 6,description = "Scroll down and go to the next page")
     public void Step6() throws InterruptedException {
         page2.scrollAndGoToNextPage(2);
-
     }
 
     @Test(priority = 7,description = "Validate if the number of results on page 2 is equal to page 3 or not")
