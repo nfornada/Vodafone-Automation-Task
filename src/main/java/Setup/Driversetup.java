@@ -32,7 +32,8 @@ public class Driversetup
 
     @AfterClass(alwaysRun = true)
     public void quit() {
-            driver.quit();
+        softassert.assertAll();
+        driver.quit();
     }
 
     public void browserSetup(String browser){
