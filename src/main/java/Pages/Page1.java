@@ -20,7 +20,6 @@ public Page1(WebDriver driver){
     public int numoftextsfound() throws InterruptedException {
         checkPage(1);
         List<WebElement> elements = driver.findElements(RelatedSearchesSections);
-
         Thread.sleep(20000);
         System.out.println("Number of 'Related searches for Vodafone' sections: "+elements.size()+"\n");
         return elements.size();
