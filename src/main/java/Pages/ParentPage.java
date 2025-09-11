@@ -42,7 +42,6 @@ public  class ParentPage extends Driversetup {
             if (pageNum==3) {
                 pageNum=13;
             }
-            //driver.close();
             browserSetup(browser);
             driver=super.driver;
             driver.get(testData.get("url2")+pageNum);
