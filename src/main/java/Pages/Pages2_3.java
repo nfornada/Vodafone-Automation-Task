@@ -16,7 +16,9 @@ public class Pages2_3 extends ParentPage
 
 
     public int findLinksCount() throws InterruptedException {
+        checkPage(pageNum);
         List<WebElement> links = driver.findElements(By.xpath("//li[@class=\"b_algo\"]//h2"));
+        System.out.println("Number of links found in page "+pageNum+" = "+links.size());
 
         return links.size();
     }

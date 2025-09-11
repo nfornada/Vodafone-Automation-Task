@@ -6,6 +6,7 @@ import Setup.Driversetup;
 import io.qameta.allure.Attachment;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.util.Map;
 
@@ -22,9 +23,11 @@ public class Testclass extends Driversetup {
     @Attachment(value = "Screenshot", type = "image/png")
     public void Step1()
     {
+        softassert=new SoftAssert();
         home= new LandingPage(driver);
         driver.get(testData.get("url"));
         Assert.assertTrue(driver.findElement(home.pageloaded()).isDisplayed());
+        softassert.assertAll();
     }
 
     @Test(priority = 2,description = "Type and search for “Vodafone”")
@@ -35,9 +38,11 @@ public class Testclass extends Driversetup {
 
     @Test(priority = 3,dataProvider = "csvData", dataProviderClass = TestDataProvider.class ,description = "Validate that the first results page contains 2 'Related searches for Vodafone' sections")
     public void Step3(Map<String, String> data) throws InterruptedException {
+        softassert=new SoftAssert();
         page1 =new Page1(driver);
         softassert.assertTrue(page1.numoftextsfound()>=2,"Number of texts found is less than 2");
         softassert.assertTrue(page1.checkitemsunderneath(data.get("searchKey")),"Not all items contain 'Vodafone'.");
+        softassert.assertAll();
     }
     @Test(priority = 4,description = "Scroll down and go to the next page")
     public void Step4() throws InterruptedException {
@@ -59,9 +64,11 @@ public class Testclass extends Driversetup {
 
     @Test(priority = 7,description = "Validate if the number of results on page 2 is equal to page 3 or not")
     public void Step7() throws InterruptedException {
+        softassert=new SoftAssert();
         page3=new Pages2_3(driver,3);
         numberOfLinksPage3=page3.findLinksCount();
         Assert.assertEquals(numberOfLinksPage2, numberOfLinksPage3,"Number links in pages 2 and 3 don't match.");
+        softassert.assertAll();
     }
 
 }

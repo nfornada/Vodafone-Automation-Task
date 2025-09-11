@@ -27,14 +27,15 @@ public class Driversetup
         this.browser=browser;
         System.out.println("Browser = "+browser);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        softassert=new SoftAssert();
+        //softassert=new SoftAssert();
     }
 
     @AfterClass(alwaysRun = true)
     public void quit() {
         driver.quit();
-        softassert.assertAll();
+        //softassert.assertAll();
     }
+
 
     public void browserSetup(String browser){
         if(browser.equalsIgnoreCase("Chrome"))

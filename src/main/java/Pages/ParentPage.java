@@ -3,6 +3,11 @@ package Pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import Setup.Driversetup;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public  class ParentPage extends Driversetup {
 
@@ -22,6 +27,8 @@ public  class ParentPage extends Driversetup {
         actions.sendKeys(Keys.END).perform();
         Thread.sleep(3000);
         checkPage(pageNum);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(nextpage));
         driver.findElement(nextpage).click();
     }
 
@@ -35,6 +42,7 @@ public  class ParentPage extends Driversetup {
             if (pageNum==3) {
                 pageNum=13;
             }
+            //driver.close();
             browserSetup(browser);
             driver=super.driver;
             driver.get(testData.get("url2")+pageNum);
