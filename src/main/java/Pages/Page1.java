@@ -14,24 +14,19 @@ public Page1(WebDriver driver){
    super(driver);
 }
 
-    By RelatedSearchesSections = By.xpath("//h2[normalize-space(.)='Related searches for Vodafone']");
+    By RelatedSearchesSections = By.xpath("//h2[translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')='related searches for vodafone']");
     By ListUnderneath =By.xpath("./following-sibling::*[1]//li | ./parent::div/following-sibling::*[1]//div[contains(@class,'suggestion_text')]");
-
-   // List<WebElement> elements;
 
     public int numoftextsfound() throws InterruptedException {
         checkPage(1);
         List<WebElement> elements = driver.findElements(RelatedSearchesSections);
         System.out.println("Number of 'Related searches for Vodafone' sections: "+elements.size()+"\n");
         return elements.size();
-
     }
 
     public boolean checkitemsunderneath(String data)  {
         List<WebElement> items;
         List<WebElement> elements = driver.findElements(RelatedSearchesSections);
-        System.out.println("parent list 1: " +elements.get(0).getText() );
-        System.out.println("parent list:  2 " +elements.get(1).getText() );
         int matcheditems;
         int countoflist;
         for (WebElement section : elements)

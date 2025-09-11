@@ -34,11 +34,10 @@ public  class ParentPage extends Driversetup {
 
     public void checkPage(int pageNum) throws InterruptedException {
         Thread.sleep(5000);
-
-        try{
+        try {
             driver.findElement(nextpage).isDisplayed();
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             if (pageNum==3) {
                 pageNum=13;
             }
@@ -46,7 +45,6 @@ public  class ParentPage extends Driversetup {
             driver=super.driver;
             driver.get(testData.get("url2")+pageNum);
         }
-
     }
 
 }

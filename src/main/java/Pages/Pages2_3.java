@@ -9,7 +9,9 @@ import java.util.List;
 public class Pages2_3 extends ParentPage
 {
     int pageNum;
-    public Pages2_3(WebDriver driver,int pageNum) {
+
+    public Pages2_3(WebDriver driver,int pageNum)
+    {
         super(driver);
         this.pageNum=pageNum;
     }

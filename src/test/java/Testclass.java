@@ -40,8 +40,9 @@ public class Testclass extends Driversetup {
     public void Step3(Map<String, String> data) throws InterruptedException {
         softassert=new SoftAssert();
         page1 =new Page1(driver);
-        softassert.assertTrue(page1.numoftextsfound()>=2,"Number of texts found is less than 2");
-        softassert.assertTrue(page1.checkitemsunderneath(data.get("searchKey")),"Not all items contain 'Vodafone'.");
+        softassert.assertTrue(page1.numoftextsfound()>=2,"Number of 'Related searches for Vodafone' sections found is less than 2.");
+        softassert.assertAll();
+        softassert.assertTrue(page1.checkitemsunderneath(data.get("searchKey")),"Not all items in the list contain 'Vodafone'.");
         softassert.assertAll();
     }
     @Test(priority = 4,description = "Scroll down and go to the next page")
