@@ -27,7 +27,7 @@ public class Driversetup
         this.browser=browser;
         System.out.println("Browser = "+browser);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        //softassert=new SoftAssert();
+        softassert=new SoftAssert();
     }
 
     @AfterClass(alwaysRun = true)
