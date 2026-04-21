@@ -14,17 +14,14 @@ public Page1(WebDriver driver){
    super(driver);
 }
 
-    By RelatedSearchesSections = By.xpath("//h2[normalize-space(.)='Related searches for Vodafone']");
-    By ListUnderneath =By.xpath("./following-sibling::*[1]//li");
+    By RelatedSearchesSections = By.xpath("//h2[translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')='related searches for vodafone']");
+    By ListUnderneath =By.xpath("./following-sibling::*[1]//li | ./parent::div/following-sibling::*[1]//div[contains(@class,'suggestion_text')]");
 
     public int numoftextsfound() throws InterruptedException {
         checkPage(1);
         List<WebElement> elements = driver.findElements(RelatedSearchesSections);
-
-        Thread.sleep(20000);
         System.out.println("Number of 'Related searches for Vodafone' sections: "+elements.size()+"\n");
         return elements.size();
-
     }
 
     public boolean checkitemsunderneath(String data)  {
@@ -35,10 +32,9 @@ public Page1(WebDriver driver){
         for (WebElement section : elements)
         {
             matcheditems=0;
-            countoflist=0;
-            System.out.println("parent list: " +section.getText());
+            System.out.println("parent list: " +section.getText() );
              items = section.findElements(ListUnderneath);
-            countoflist+=items.size();
+            countoflist=items.size();
             for(WebElement item :items)
             {
                 String text = item.getText().toLowerCase().trim();

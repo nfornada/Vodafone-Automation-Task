@@ -1,4 +1,3 @@
-import Data.ReadFromData;
 import Data.TestDataProvider;
 import Pages.LandingPage;
 import Pages.Page1;
@@ -7,6 +6,8 @@ import Setup.Driversetup;
 import io.qameta.allure.Attachment;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
 import java.util.Map;
 
 
@@ -25,19 +26,21 @@ public class Testclass extends Driversetup {
         home= new LandingPage(driver);
         driver.get(testData.get("url"));
         Assert.assertTrue(driver.findElement(home.pageloaded()).isDisplayed());
-    softassert.assertAll();
+        softassert.assertAll();
     }
 
     @Test(priority = 2,description = "Type and search for “Vodafone”")
-    public void Step2() throws InterruptedException {
+    public void Step2() throws InterruptedException
+    {
         home.typeinsearch(testData.get("searchKey"));
     }
 
-    @Test(priority = 3,dataProvider = "csvData", dataProviderClass = TestDataProvider.class,description = "Validate that the first results page contains 2 \"Related searches for Vodafone\" sections")
+    @Test(priority = 3,dataProvider = "csvData", dataProviderClass = TestDataProvider.class ,description = "Validate that the first results page contains 2 'Related searches for Vodafone' sections")
     public void Step3(Map<String, String> data) throws InterruptedException {
         page1 =new Page1(driver);
-        softassert.assertTrue(page1.numoftextsfound()>=2);
-        softassert.assertTrue(page1.checkitemsunderneath(data.get("searchKey")));
+        softassert.assertTrue(page1.numoftextsfound()>=2,"Number of 'Related searches for Vodafone' sections found is less than 2.");
+        softassert.assertAll();
+        softassert.assertTrue(page1.checkitemsunderneath(data.get("searchKey")),"Not all items in the list contain 'Vodafone'.");
         softassert.assertAll();
     }
     @Test(priority = 4,description = "Scroll down and go to the next page")

@@ -32,9 +32,10 @@ public class Driversetup
 
     @AfterClass(alwaysRun = true)
     public void quit() {
-        softassert.assertAll();
         driver.quit();
+        //softassert.assertAll();
     }
+
 
     public void browserSetup(String browser){
         if(browser.equalsIgnoreCase("Chrome"))
